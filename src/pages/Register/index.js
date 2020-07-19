@@ -73,7 +73,7 @@ export default function Register() {
             placeholder="Seu e-mail"
           />
         </label>
-        <label htmlFor="senha">
+        <label htmlFor="password">
           Senha:
           <input
             type="password"
