@@ -14,9 +14,8 @@ export function loginSuccess(payload) {
   };
 }
 
-export function clicaBotaoFailure(payload) {
+export function loginFailure() {
   return {
     type: types.LOGIN_FAILURE,
-    payload,
   };
 }
