@@ -15,6 +15,13 @@ export default (state = initialState, action) => {
       newState.isLoggedIn = true;
       newState.token = action.payload.token;
       newState.usuario = action.payload.usuario;
+      newState.isLoading = false;
+      return newState;
+    }
+
+    case types.LOGIN_REQUEST: {
+      const newState = { ...initialState };
+      newState.isLoading = true;
       return newState;
     }
 
