@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 import { get } from 'lodash';
+import { useHistory } from 'react-router-dom';
 
 import { Container } from '../../styles/GlobalStyles';
 import { Form } from './styled';
 
 import axios from '../../services/axios';
-import history from '../../services/history';
 
 export default function Register() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();

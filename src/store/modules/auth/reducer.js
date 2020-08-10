@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 import * as types from '../types';
 
 const initialState = {
   isLoggedIn: false,
-  token: false,
+  token: '',
   use: {},
   isLoading: false,
 };
