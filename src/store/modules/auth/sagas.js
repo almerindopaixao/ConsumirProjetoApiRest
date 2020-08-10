@@ -1,4 +1,5 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import * as actions from './actions';
 import * as types from '../types';
@@ -12,6 +13,8 @@ function* loginRequest({ payload }) {
     toast.success('Login realizado com sucesso');
 
     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+
+    document.location.reload();
   } catch (e) {
     toast.error('Usuário ou senha inválidos.');
 
@@ -19,4 +22,15 @@ function* loginRequest({ payload }) {
   }
 }
 
-export default all([takeLatest(types.LOGIN_REQUEST, loginRequest)]);
+function persistRehydrate({ payload }) {
+  const token = get(payload, 'auth.token', '');
+
+  if (!token) return;
+
+  axios.defaults.headers.Authorization = `Bearer ${token}`;
+}
+
+export default all([
+  takeLatest(types.LOGIN_REQUEST, loginRequest),
+  takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
+]);
