@@ -4,7 +4,7 @@ import { get } from 'lodash';
 import { FaUserCircle, FaEdit, FaWindowClose } from 'react-icons/fa';
 
 import { Container } from '../../styles/GlobalStyles';
-import { AlunoContainer, ProfilePicture } from './styled';
+import { AlunosContainer, ProfilePicture, AlunoContainer } from './styled';
 import axios from '../../services/axios';
 
 export default function Alunos() {
@@ -23,9 +23,9 @@ export default function Alunos() {
     <Container>
       <h1>Alunos</h1>
 
-      <AlunoContainer>
+      <AlunosContainer>
         {alunos.map((aluno) => (
-          <div key={String(aluno.id)}>
+          <AlunoContainer key={String(aluno.id)}>
             <ProfilePicture>
               {get(aluno, 'Fotos[0].url', false) ? (
                 <img src={aluno.Fotos[0].url} alt="" />
@@ -44,9 +44,9 @@ export default function Alunos() {
             <Link to={`/aluno/${aluno.id}/delete`}>
               <FaWindowClose size={16} />
             </Link>
-          </div>
+          </AlunoContainer>
         ))}
-      </AlunoContainer>
+      </AlunosContainer>
     </Container>
   );
 }
