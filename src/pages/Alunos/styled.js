@@ -18,8 +18,7 @@ export const ProfilePicture = styled.div`
 
 export const AlunoContainer = styled.div`
   display: grid;
-  grid-template-columns: 80px 80px 280px 80px 80px;
+  grid-template-columns: 80px 80px 280px 60px 60px;
   align-items: center;
-  justify-items: center;
   padding: 5px 0;
 `;
