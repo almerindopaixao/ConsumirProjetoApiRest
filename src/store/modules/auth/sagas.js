@@ -32,7 +32,21 @@ function persistRehydrate({ payload }) {
   axios.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
+function* registerRequest({ payload }) {
+  const { id, nome, email, password, history } = payload;
+
+  try {
+    if(id) {
+      yield call(axios.put, '/usuario')
+    }
+  } catch(e) {
+
+  }
+
+}
+
 export default all([
   takeLatest(types.LOGIN_REQUEST, loginRequest),
   takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
+  takeLatest(types.REGISTER_REQUEST, registerRequest),
 ]);
