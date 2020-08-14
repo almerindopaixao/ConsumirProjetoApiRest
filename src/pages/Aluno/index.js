@@ -11,7 +11,7 @@ import axios from '../../services/axios';
 import * as actions from '../../store/modules/auth/actions';
 
 import { Container } from '../../styles/GlobalStyles';
-import { Form, ProfilePicture } from './styled';
+import { Form, ProfilePicture, Title } from './styled';
 import Loading from '../../components/Loading';
 
 export default function Aluno({ match }) {
@@ -145,7 +145,7 @@ export default function Aluno({ match }) {
     <Container>
       <Loading isLoading={isLoading} />
 
-      <h1>{id ? 'Editar Aluno' : 'Novo Aluno'}</h1>
+      <Title>{id ? 'Editar Aluno' : 'Novo Aluno'}</Title>
 
       {id && (
         <ProfilePicture>

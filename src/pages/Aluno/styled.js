@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
+export const Title = styled.h1`
+  text-align: center;
+`;
+
 export const Form = styled.form`
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
 
@@ -29,6 +33,7 @@ export const ProfilePicture = styled.div`
   align-items: center;
   padding: 0 0 20px;
   position: relative;
+  margin-top: 20px;
 
   img {
     height: 180px;
@@ -42,8 +47,12 @@ export const ProfilePicture = styled.div`
     justify-content: center;
     border: none;
     position: absolute;
+    padding-left: 2px;
     bottom: 0;
     color: #fff;
     background: ${colors.primaryColor};
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
   }
 `;
