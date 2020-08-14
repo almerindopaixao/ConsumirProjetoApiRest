@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-export const Paragrafo = styled.p``;
+import * as colors from '../../config/colors';
 
 export const Form = styled.form`
   margin-top: 20px;
@@ -21,5 +20,30 @@ export const Form = styled.form`
     height: 40px;
     border-radius: 8px;
     font-size: 17px;
+  }
+`;
+
+export const ProfilePicture = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 20px;
+  position: relative;
+
+  img {
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    background: ${colors.primaryColor};
   }
 `;

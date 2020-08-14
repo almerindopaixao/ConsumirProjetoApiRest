@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
 import { isEmail, isInt, isFloat } from 'validator';
+import { FaUserCircle, FaEdit } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import axios from '../../services/axios';
 import * as actions from '../../store/modules/auth/actions';
 
 import { Container } from '../../styles/GlobalStyles';
-import { Form } from './styled';
+import { Form, ProfilePicture } from './styled';
 import Loading from '../../components/Loading';
 
 export default function Aluno({ match }) {
   const dispatch = useDispatch();
 
-  const id = get(match, 'params.id', 0);
+  const id = get(match, 'params.id', '');
   const [nome, setNome] = useState('');
   const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
   const [idade, setIdade] = useState('');
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
+  const [foto, setFoto] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
@@ -36,7 +38,9 @@ export default function Aluno({ match }) {
 
         const { data } = await axios.get(`/alunos/${id}`);
 
-        // const Foto = get(data, 'Fotos[0].url', '');
+        const Foto = get(data, 'Fotos[0].url', '');
+
+        setFoto(Foto);
 
         setNome(data.nome);
         setSobrenome(data.sobrenome);
@@ -142,6 +146,15 @@ export default function Aluno({ match }) {
       <Loading isLoading={isLoading} />
 
       <h1>{id ? 'Editar Aluno' : 'Novo Aluno'}</h1>
+
+      {id && (
+        <ProfilePicture>
+          {foto ? <img src={foto} alt={nome} /> : <FaUserCircle size={180} />}
+          <Link to={`/fotos/${id}`}>
+            <FaEdit size={24} />
+          </Link>
+        </ProfilePicture>
+      )}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="nome">
